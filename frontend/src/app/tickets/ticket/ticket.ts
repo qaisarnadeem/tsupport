@@ -18,7 +18,7 @@ export  class Ticket{
     }
 
     commentable(){
-        !this.is_new() && !this.resolved_status();
+        return !this.is_new() && !this.resolved_status();
     }
 
     addComment(comment_json){

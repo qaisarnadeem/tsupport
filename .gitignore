@@ -16,6 +16,6 @@
 
 # Ignore yarn lockfile
 /frontend/yarn.lock
-
+npm-debug.log
 /public/*
 

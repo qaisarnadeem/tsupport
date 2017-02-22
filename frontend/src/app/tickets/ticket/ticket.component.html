@@ -51,12 +51,12 @@
             </div>
         </ng-container>
     </ng-container>
-    <div class="container clearfix" *ngIf="ticket.comments && ticket.comments.length">
+    <div class="container clearfix" *ngIf="(ticket.comments && ticket.comments.length) || ticket.commentable()">
         <h2>Comments</h2>
         <div class="chat">
             <div class="chat-history">
                 <ul class="chat-ul" *ngFor="let comment of ticket.comments; let i = index;">
-                    <li *ngIf="myComment(comment)">
+                    <li *ngIf="myComment(comment)" class="clearfix">
                         <div class="message-data">
                             <span class="message-data-name"><i class="fa fa-circle you"></i> You</span>
                         </div>
@@ -64,7 +64,7 @@
                             {{comment.description}}
                         </div>
                     </li>
-                    <li [class.clearfix]="i % 2" *ngIf="!myComment(comment)">
+                    <li *ngIf="!myComment(comment)" class="clearfix">
                         <div class="message-data align-right">
                             <span class="message-data-name">{{comment.user.name}}</span> <i class="fa fa-circle me"></i>
                         </div>
