@@ -1,0 +1,85 @@
+<div class="col-md-12" *ngIf="ticket">
+    <div class="card card-block" *ngIf="ticket.is_new()">
+        <h4 class="card-title">New Ticket</h4>
+        <form #ticketForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text"
+                       class="form-control"
+                       placeholder="Title"
+                       required
+                       [(ngModel)]="ticket.title"
+                       name = "title"
+                >
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea
+                        class="form-control"
+                        placeholder="Password"
+                        required
+                        [(ngModel)]="ticket.description"
+                        name="description" rows="10"
+                ></textarea>
+            </div>
+            <button
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="!ticketForm.form.valid">Create</button>
+        </form>
+    </div>
+
+    <ng-container *ngIf="!ticket.is_new()">
+        <h3 class="text-sm-center">{{ticket.title}}</h3>
+        <div class="col-sm-2">Status: </div>
+        <div class="col-sm-10"><strong>{{ticket.status}}</strong></div>
+        <div class="col-sm-2">Resolved By: </div>
+        <div class="col-sm-10"><strong>{{ticket.resolved_by_name ? ticket.resolved_by_name : "N/A"}}</strong></div>
+        <br>
+        <div class="col-sm-2">Description: </div>
+        <div class="col-sm-10">
+            <p>
+                {{ticket.description}}
+            </p>
+        </div>
+        <ng-container  *ngIf="current_user && (current_user.is_admin() || current_user.is_agent())">
+            <div class="col-sm-12" *ngIf="ticket.open_status()">
+                <button class="btn btn-primary btn md" (click)="change_status('in_progress')">Start Work</button>
+            </div>
+            <div class="col-sm-12" *ngIf="ticket.inprogress_status()">
+                <button class="btn btn-primary btn md" (click)="change_status('resolved')">Resolve</button>
+            </div>
+        </ng-container>
+    </ng-container>
+    <div class="container clearfix" *ngIf="ticket.comments && ticket.comments.length">
+        <h2>Comments</h2>
+        <div class="chat">
+            <div class="chat-history">
+                <ul class="chat-ul" *ngFor="let comment of ticket.comments; let i = index;">
+                    <li *ngIf="myComment(comment)">
+                        <div class="message-data">
+                            <span class="message-data-name"><i class="fa fa-circle you"></i> You</span>
+                        </div>
+                        <div class="message you-message">
+                            {{comment.description}}
+                        </div>
+                    </li>
+                    <li [class.clearfix]="i % 2" *ngIf="!myComment(comment)">
+                        <div class="message-data align-right">
+                            <span class="message-data-name">{{comment.user.name}}</span> <i class="fa fa-circle me"></i>
+                        </div>
+                        <div class="message me-message float-right"> {{comment.description}}</div>
+                    </li>
+                </ul>
+
+            </div> <!-- end chat-history -->
+
+        </div>
+    </div>
+    <div class="col-sm-12" *ngIf="ticket.commentable()">
+        <form #commentForm="ngForm" (ngSubmit)="postComment()">
+            <textarea name="text" id="" cols="30" rows="10" required class="form-control" [(ngModel)]="comment_text"></textarea>
+            <button type="submit" class="btn btn-primary" [disabled]="!commentForm.form.valid">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="fluid-container">
+    <div class="jumbotron text-center" style="
+    background-color: #fdc539;
+    color: white;
+">
+        <h1>Problem Solved!</h1>
+        <p class="lead">Discover what your customers want. Change the meaning of customer support by adapting to the best industry standards of customer support management.</p>
+        <p>
+            <a *ngIf="!_tokenService.userSignedIn()" class="btn btn-lg btn-success" href="#" routerLink="/session/sign-up" role="button">Register Now</a>
+            <a *ngIf="_tokenService.userSignedIn()" class="btn btn-lg btn-success" href="#" routerLink="/tickets" role="button">Tickets</a>
+        </p>
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row text-center">
+        <div class="col-lg-4">
+            <i class="fa fa-user-plus fa-4" aria-hidden="true"></i>
+            <h2 style="
+">Customer Registration</h2>
+            <p>Customers can register themselves to create and track support requests!</p>
+
+        </div>
+        <div class="col-lg-4">
+            <i class="fa fa-life-ring fa-4" aria-hidden="true"></i>
+            <h2>Support Tickets</h2>
+            <p>Agents can work on their more efficiently!</p>
+
+        </div>
+        <div class="col-lg-4">
+            <i class="fa fa-lock fa-4" aria-hidden="true"></i>
+            <h2>Admin Access</h2>
+            <p>Have greater control on over all flow with admin access!</p>
+
+        </div>
+        </div>
+    <div class="row text-center">
+        <div class="col-lg-4">
+            <i class="fa fa-calendar-check-o fa-4" aria-hidden="true"></i>
+            <h2>Monthly Reports</h2>
+            <p>Agents can generate monthly reports on specific ticket statuses!</p>
+
+        </div>
+        <div class="col-lg-4">
+            <i class="fa fa-commenting-o fa-4" aria-hidden="true"></i>
+            <h2>Comments</h2>
+            <p>Comments on tickets gives more meaning to problem solving!</p>
+
+        </div>
+        <div class="col-lg-4">
+            <i class="fa fa-smile-o fa-4" aria-hidden="true"></i>
+            <h2>Customer Satisfaction</h2>
+            <p>Give your customers higher level of satisfaction!</p>
+
+        </div>
+    </div>
+
+</div>

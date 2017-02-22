@@ -1,0 +1,21 @@
+# Ignore bundler config.
+/.bundle
+.idea/
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# Ignore frontend
+/frontend/node_modules
+/frontend/npm-debug.log
+
+# Ignore yarn lockfile
+/frontend/yarn.lock
+
+/public/*
+

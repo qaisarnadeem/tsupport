@@ -1,0 +1,55 @@
+<div class="alert alert-success pt-2" *ngIf="notice">
+    {{this.notice}}
+</div>
+<h3 class="text-sm-center pt-2">{{current_user.is_customer() ? "My" : ''}} Tickets</h3>
+<div class="col-sm-12 filters" *ngIf="!current_user.is_customer()">
+    <form #searchForm="ngForm" (ngSubmit)="searchTickets()">
+        <div class="col-sm-4">
+            <input type="text" [(ngModel)]="query" name="query" class="form-control" placeholder="Title/Description">
+        </div>
+        <div class="col-sm-4">
+            <select name="status" id="" class="form-control" [(ngModel)]="status">
+                <option value="">Select Status</option>
+                <option value="0">Open</option>
+                <option value="1">In Progress</option>
+                <option value="2">Resolved</option>
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+<div class="table-responsive" *ngIf="tickets.length">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>View</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ticket of tickets">
+            <td [attr.title]="ticket.title">{{ticket.title | truncate : 12}}</td>
+            <td [attr.title]="ticket.description">{{ticket.description | truncate : 12 }}</td>
+            <td>{{ticket.date | date: 'yMMMdjms'}}</td>
+            <td>{{ticket.status}}</td>
+            <td><a href=":javascript" class="href" [routerLink]="[ticket.id]">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<h3 class="text-center" *ngIf="!tickets.length">No ticket exists</h3>
+<div class="new-ticket-btn">
+    <a  class="btn btn-success btn-circle btn-xl" [routerLink]="'new'">
+        <i class="fa fa-plus"></i>
+    </a>
+</div>
+<div class="pdf-download-btn" *ngIf="tickets.length">
+    <button  class="btn btn-success btn-circle btn-xl" (click)="getPdf()">
+        <i class="fa fa-download"></i>
+    </button>
+</div>

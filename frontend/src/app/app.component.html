@@ -1,0 +1,7 @@
+<top-nav></top-nav>
+<section class="main-container" [ngClass]="{sidebarPushRight: isActive}" [class.sidebar-active]="current_user()">
+    <router-outlet></router-outlet>
+</section>
+<footer class="footer text-center">
+    <p>© tSupport {{today | date: 'y' }}</p>
+</footer>
