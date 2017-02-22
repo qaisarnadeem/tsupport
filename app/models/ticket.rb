@@ -3,7 +3,7 @@ class Ticket < ApplicationRecord
   belongs_to :user
   belongs_to :resolved_by , class_name: 'User',optional: true
   has_many :comments
-  validates_presence_of :title , :description
+  validates_presence_of :title , :description , :user
   rails_admin do
     edit do
       field :title

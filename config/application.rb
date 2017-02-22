@@ -30,5 +30,7 @@ module TSupport
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+    config.autoload_paths << Rails.root.join('lib')
+    require "#{Rails.root}/lib/extensions"
   end
 end
