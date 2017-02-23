@@ -2,7 +2,8 @@ default: &default
   adapter: mysql2
   pool: 100
   timeout: 5000
-  password: root
+  username: root
+  password:
 
 development:
   <<: *default
@@ -18,3 +19,5 @@ test:
 production:
   <<: *default
   database: tsupport_production
+  username: <%=ENV['DATABASE_USER']%>
+  password: <%=ENV['DATABASE_PASSWORD']%>

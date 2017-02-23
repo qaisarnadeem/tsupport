@@ -28,15 +28,21 @@ and follow the instructions as per you OS
     ```
 
 2. Migrate the database
+Note: you need to provide your mysql credentials details in `config/database.yml`
     ```bash
     rails db:create
     rails db:migrate
     rails db:seed #this will ask for admin user email and password
     ```
-
+    Please note there is a test db dump in `src/dbdumps/tsupport_development.sql`
+    you can also restore it with this commend: 
+    ```bash
+    mysql -u USERNAME -p tsupport_development < src/dbdumps/tsupport_development.sql
+    `````
 3. Install angular2 for frontend
 
     ```bash
+    npm install -g typings
     npm run postinstall
     ```
 

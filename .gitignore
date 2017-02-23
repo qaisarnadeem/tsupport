@@ -16,6 +16,7 @@
 
 # Ignore yarn lockfile
 /frontend/yarn.lock
+public/*
+!public/favicon.ico
 npm-debug.log
-/public/*
 
