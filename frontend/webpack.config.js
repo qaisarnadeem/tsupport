@@ -30,7 +30,14 @@ var webpackConfig = {
       { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
       { test: /\.css$/, loaders: ['to-string-loader', 'css-loader'] },
       { test: /\.html$/, loader: 'raw-loader' },
-      { test: /\.scss$/, loader: 'raw-loader!sass-loader', exclude: /node_modules/ }
+      { test: /\.scss$/, loader: 'raw-loader!sass-loader', exclude: /node_modules/ },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['env']
+        }
+      }
     ]
   }
 
